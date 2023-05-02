@@ -15,7 +15,7 @@ At the terminal, run:
 - AI shoot shoots at random places on our board, once the ships have sunk, it's game over
 - game selection - found in data.js file here you can see where the AI ​​places the ships (function selectGame belongs to it)
 - You have to set the AI ​​to see if it hit the ship
-- Use as few variables as possible
+- Use as few global variables as possible
 - you can communicate externally via message
 
 ### OPT:

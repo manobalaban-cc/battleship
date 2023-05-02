@@ -15,7 +15,6 @@ function initGame() {
     });
   });
   for (const gameNumber in data) {
-    console.log('!!!!!!!!', data);
     document.getElementById('mode').insertAdjacentHTML('beforeend', `
       <option value=${data[gameNumber]}>${gameNumber}</option>
     `);
@@ -27,6 +26,7 @@ function initGame() {
 function displayBoard(data) {
   const grid = data.board;
   const containerElement = document.querySelector(`.container${data.boardNumber}`);
+  console.log(containerElement);
   containerElement.innerHTML = '';
   containerElement.insertAdjacentHTML('afterbegin', creatHeadRow(grid.length));
   for (let x = 0; x < grid.length; x++) {
@@ -54,8 +54,8 @@ function displayBoard(data) {
         cellElement.addEventListener('contextmenu', (e) => {
           e.preventDefault();
           handleClick({
-            x: cellElement.dataset.x,
-            y: cellElement.dataset.y,
+            x: String.fromCharCode(CHAR_CODE_OF_A + x),
+            y: y + 1,
             clickType: 'right',
           });
         });

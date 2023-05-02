@@ -40,7 +40,7 @@ function resetGame() {
  * @param {Object} data Random generated coordinates, where the AI would like to shoot.
  */
 function aiShoot(data) {
-  displayMessage(data.x + data.y);
+  displayMessage(data.x + data.y); // Just an example to see how the data looks like, You may delete this line.
 }
 
 
@@ -51,10 +51,10 @@ and board which sould be a nested array, to display.
 displayMessage and displayTextMessage are functions to display messages:
 requires two argument: first is a string to display, and the second is a color (can be text, rgb, rgba, hex color)
 */
-displayBoard({ boardnumber: 1, board:
+displayBoard({ boardNumber: 1, board:
   [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']],
 });
-displayBoard({ boardnumber: 2, board:
+displayBoard({ boardNumber: 2, board:
   [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']],
 });
 displayMessage('message', 'green');
