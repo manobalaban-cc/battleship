@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+import {selectGame, handleClick, resetGame, aiShoot} from './index.js';
+import {data} from './data.js';
+
 const CHAR_CODE_OF_A = 65;
 const PLAYING_AREA_HEIGHT = 80;
 
@@ -23,9 +24,9 @@ function initGame() {
     .addEventListener('input', (e) => selectGame(e.target.value));
 }
 
-function displayBoard(data) {
-  const grid = data.board;
-  const containerElement = document.querySelector(`.container${data.boardNumber}`);
+export function displayBoard(boardStruct) {
+  const grid = boardStruct.board;
+  const containerElement = document.querySelector(`.container${boardStruct.boardNumber}`);
   console.log(containerElement);
   containerElement.innerHTML = '';
   containerElement.insertAdjacentHTML('afterbegin', creatHeadRow(grid.length));
@@ -43,7 +44,7 @@ function displayBoard(data) {
       cellElement.style.width = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.height = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.fontSize = `${(PLAYING_AREA_HEIGHT / (grid[x].length + 1)) - 5}vh`;
-      if (data.boardNumber === 2) {
+      if (boardStruct.boardNumber === 2) {
         cellElement.addEventListener('click', () => {
           handleClick({
             x: String.fromCharCode(CHAR_CODE_OF_A + x),
@@ -75,12 +76,12 @@ function creatHeadRow(length) {
   return `${result}</div>`;
 }
 
-function displayMessage(message, color) {
+export function displayMessage(message, color) {
   document.getElementById('display').style.color = color;
   document.getElementById('display').innerHTML = message;
 }
 
-function displayTextMessage(message, color) {
+export function displayTextMessage(message, color) {
   document.getElementById('textDisplay').style.color = color;
   document.getElementById('textDisplay').innerHTML = message;
 }

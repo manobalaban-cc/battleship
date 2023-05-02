@@ -1,12 +1,12 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
+import {displayBoard, displayMessage, displayTextMessage}
+  from './event-handlers.js';
 
 /**
  * This function called when You chose the game mode.
  * Gives You the data about what kind of game the AI would like to play, and where it places its ships.
  * @param {String} data the selected game mode, You have to parse it to use.
  */
-function selectGame(data) {
+export function selectGame(data) {
   displayMessage(data, 'black'); // Just an example to see how the data looks like, You may delete this line.
 }
 
@@ -14,14 +14,14 @@ function selectGame(data) {
  * Called every time, when the player clicks on a cell.
  * @param {Object} data the clicked cells data.
  */
-function handleClick(data) {
+export function handleClick(data) {
   displayMessage(data.x + data.y + data.clickType); // Just an example to see how the data looks like, You may delete this line.
 }
 
 /**
  * Called when the player clicks on the reset game button.
  */
-function resetGame() {
+export function resetGame() {
   // You can dete the whole body of this function (it is just an example), and implement Your solution.
   const board = [];
   for (let i = 0; i < 10; i++) {
@@ -39,7 +39,7 @@ function resetGame() {
  * You may leave the data later, when You implements smarter AI.
  * @param {Object} data Random generated coordinates, where the AI would like to shoot.
  */
-function aiShoot(data) {
+export function aiShoot(data) {
   displayMessage(data.x + data.y); // Just an example to see how the data looks like, You may delete this line.
 }
 
