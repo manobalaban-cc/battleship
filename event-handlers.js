@@ -75,14 +75,18 @@ function creatHeadRow(length) {
   return `${result}</div>`;
 }
 
-export function displayMessage(message, color) {
-  document.getElementById('display').style.color = color;
-  document.getElementById('display').innerHTML = message;
+function display(target, message, color) {
+  const targetElement = document.getElementById(target);
+  targetElement.style.color = color;
+  targetElement.innerHTML = message;
 }
 
-export function displayTextMessage(message, color) {
-  document.getElementById('textDisplay').style.color = color;
-  document.getElementById('textDisplay').innerHTML = message;
+export function displayMessage(...rest) {
+  display('display', ...rest);
+}
+
+export function displayTextMessage(...rest) {
+  display('textDisplay', ...rest);
 }
 
 window.addEventListener('load', () => {
