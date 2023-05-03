@@ -65,6 +65,7 @@
     "indent": ["warn", 2],
     "keyword-spacing": "warn",
     "max-len": ["warn", {
+      "code": 100,
       "ignoreComments": true,
       "ignoreUrls": true,
       "ignoreTemplateLiterals": true,

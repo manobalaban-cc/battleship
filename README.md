@@ -2,6 +2,7 @@
 
 At the terminal, run:
  `npm install` / `npm i`.
+Start Live Server (Click on 'Go Live' at the bottom right corner.)
 
 ### Mandatory:
 
