@@ -1,7 +1,7 @@
 import {selectGame, handleClick, resetGame, aiShoot} from './index.js';
 import {data} from './data.js';
 
-const CHAR_CODE_OF_A = 65;
+const CHAR_CODE_OF_A = 'A'.codePointAt(0);
 const PLAYING_AREA_HEIGHT = 80;
 
 function initGame() {
