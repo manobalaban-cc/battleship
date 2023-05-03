@@ -2,27 +2,32 @@ import {displayBoard, displayMessage, displayTextMessage}
   from './event-handlers.js';
 
 /**
- * This function called when You chose the game mode.
- * Gives You the data about what kind of game the AI would like to play, and where it places its ships.
- * @param {String} data the selected game mode, You have to parse it to use.
+ * This function is called when you choose the game mode.
+ * The caller gives you the data about what kind of game
+ * the AI would like to play and where it places its ships.
+ * @param {String} gameDescription - An encoded string of the game data.
+ *    You have to parse to use it.
  */
-export function selectGame(data) {
-  displayMessage(data, 'black'); // Just an example to see how the data looks like, You may delete this line.
+export function selectGame(gameDescription) {
+  // You may delete the following line as an example to see what the data looks like.
+  displayMessage(gameDescription, 'black');
 }
 
 /**
- * Called every time, when the player clicks on a cell.
- * @param {Object} data the clicked cells data.
+ * Called whenever the player clicks on a cell.
+ * @param {Object} clickProperties - The clicked cell's properties.
+ *    It contains x and y coordinates and clickType that can be 'left' or 'right'.
  */
-export function handleClick(data) {
-  displayMessage(data.x + data.y + data.clickType); // Just an example to see how the data looks like, You may delete this line.
+export function handleClick(clickProperties) {
+  // You may delete the following line as an example to see what the data looks like.
+  displayMessage(clickProperties.x + clickProperties.y + clickProperties.clickType);
 }
 
 /**
  * Called when the player clicks on the reset game button.
  */
 export function resetGame() {
-  // You can dete the whole body of this function (it is just an example), and implement Your solution.
+  // You can delete the whole body of this function as an example.
   const board = [];
   for (let i = 0; i < 10; i++) {
     board.push([]);
@@ -35,21 +40,27 @@ export function resetGame() {
 }
 
 /**
- * Called when the player clicks on the AI shoot button. Gives You random genarated coordinates.
- * You may leave the data later, when You implements smarter AI.
- * @param {Object} data Random generated coordinates, where the AI would like to shoot.
+ * This function is called when the player clicks on the AI shoot button.
+ * The caller gives you randomly generated coordinates.
+ * You may ignore the parameter later when you implement more intelligent AI.
+ * @param {Object} coordinates - Random generated coordinates (x and y),
+ *    where the AI would like to shoot.
  */
-export function aiShoot(data) {
-  displayMessage(data.x + data.y); // Just an example to see how the data looks like, You may delete this line.
+export function aiShoot(coordinates) {
+  // You may delete the following line as an example to see what the data looks like.
+  displayMessage(coordinates.x + coordinates.y);
 }
 
 
-/*Example to show how the three callable function looks like in action.
-The displayBoard function requeres an object as argument and it should have two property:
-boardNumber with 1 (left) or 2 (right), to decide where would You like to display,
-and board which sould be a nested array, to display.
-displayMessage and displayTextMessage are functions to display messages:
-requires two argument: first is a string to display, and the second is a color (can be text, rgb, rgba, hex color)
+/*
+Example to show how the three callable function looks in action.
+The `displayBoard` function requires an object as an argument,
+and it should have two properties:
+`boardNumber` with 1 (left) or 2 (right) to decide where you would like to display,
+and `board`, which should be a nested array to display.
+`displayMessage` and `displayTextMessage` are functions to display messages:
+They require two arguments: first is a string to display,
+and the second is a color (can be text, RGB, RGBA, or hex color).
 */
 displayBoard({ boardNumber: 1, board:
   [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']],
