@@ -24,6 +24,15 @@ function initGame() {
     .addEventListener('input', (e) => selectGame(e.target.value));
 }
 
+function handleClickHelper(event, x, y, clickType) {
+  event.preventDefault();
+  handleClick({
+    x: String.fromCharCode(CHAR_CODE_OF_A + x),
+    y: y + 1,
+    clickType,
+  });
+}
+
 export function displayBoard(boardStruct) {
   const grid = boardStruct.board;
   const containerElement = document.querySelector(`.container${boardStruct.boardNumber}`);
@@ -45,20 +54,11 @@ export function displayBoard(boardStruct) {
       cellElement.style.height = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.fontSize = `${(PLAYING_AREA_HEIGHT / (grid[x].length + 1)) - 5}vh`;
       if (boardStruct.boardNumber === 2) {
-        cellElement.addEventListener('click', () => {
-          handleClick({
-            x: String.fromCharCode(CHAR_CODE_OF_A + x),
-            y: y + 1,
-            clickType: 'left',
-          });
+        cellElement.addEventListener('click', (event) => {
+          handleClickHelper(event, x, y, 'left');
         });
-        cellElement.addEventListener('contextmenu', (e) => {
-          e.preventDefault();
-          handleClick({
-            x: String.fromCharCode(CHAR_CODE_OF_A + x),
-            y: y + 1,
-            clickType: 'right',
-          });
+        cellElement.addEventListener('contextmenu', (event) => {
+          handleClickHelper(event, x, y, 'right');
         });
       }
       rowElement.appendChild(cellElement);
