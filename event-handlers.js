@@ -24,12 +24,13 @@ function initGame() {
     .addEventListener('input', (e) => selectGame(e.target.value));
 }
 
-function handleClickHelper(event, x, y, clickType) {
+function handleClickHelper(event, x, y, clickType, source) {
   event.preventDefault();
   handleClick({
     x: String.fromCharCode(CHAR_CODE_OF_A + x),
     y: y + 1,
     clickType,
+    source,
   });
 }
 
@@ -53,14 +54,12 @@ export function displayBoard(boardStruct) {
       cellElement.style.width = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.height = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.fontSize = `${(PLAYING_AREA_HEIGHT / (grid[x].length + 1)) - 5}vh`;
-      if (boardStruct.boardNumber === 2) {
-        cellElement.addEventListener('click', (event) => {
-          handleClickHelper(event, x, y, 'left');
-        });
-        cellElement.addEventListener('contextmenu', (event) => {
-          handleClickHelper(event, x, y, 'right');
-        });
-      }
+      cellElement.addEventListener('click', (event) => {
+        handleClickHelper(event, x, y, 'left', boardStruct.boardNumber);
+      });
+      cellElement.addEventListener('contextmenu', (event) => {
+        handleClickHelper(event, x, y, 'right', boardStruct.boardNumber);
+      });
       rowElement.appendChild(cellElement);
     }
     containerElement.appendChild(rowElement);

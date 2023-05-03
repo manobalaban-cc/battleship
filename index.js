@@ -16,11 +16,13 @@ export function selectGame(gameDescription) {
 /**
  * Called whenever the player clicks on a cell.
  * @param {Object} clickProperties - The clicked cell's properties.
- *    It contains x and y coordinates and clickType that can be 'left' or 'right'.
+ *    It contains x and y coordinates, clickType that can be 'left' or 'right',
+ *    and source that indicates the number of the board where the click happened.
  */
 export function handleClick(clickProperties) {
   // You may delete the following line as an example to see what the data looks like.
-  displayMessage(clickProperties.x + clickProperties.y + clickProperties.clickType);
+  displayMessage(clickProperties.x + clickProperties.y +
+                 clickProperties.clickType + clickProperties.source);
 }
 
 /**
