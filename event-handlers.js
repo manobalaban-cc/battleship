@@ -1,7 +1,7 @@
 import {selectGame, handleClick, resetGame, aiShoot} from './index.js';
 import {data} from './data.js';
 
-const CHAR_CODE_OF_A = 65;
+const CHAR_CODE_OF_A = 'A'.codePointAt(0);
 const PLAYING_AREA_HEIGHT = 80;
 
 function initGame() {
@@ -24,12 +24,13 @@ function initGame() {
     .addEventListener('input', (e) => selectGame(e.target.value));
 }
 
-function handleClickHelper(event, x, y, clickType) {
+function handleClickHelper(event, x, y, clickType, source) {
   event.preventDefault();
   handleClick({
     x: String.fromCharCode(CHAR_CODE_OF_A + x),
     y: y + 1,
     clickType,
+    source,
   });
 }
 
@@ -53,14 +54,12 @@ export function displayBoard(boardStruct) {
       cellElement.style.width = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.height = `${PLAYING_AREA_HEIGHT / (grid[x].length + 1)}vh`;
       cellElement.style.fontSize = `${(PLAYING_AREA_HEIGHT / (grid[x].length + 1)) - 5}vh`;
-      if (boardStruct.boardNumber === 2) {
-        cellElement.addEventListener('click', (event) => {
-          handleClickHelper(event, x, y, 'left');
-        });
-        cellElement.addEventListener('contextmenu', (event) => {
-          handleClickHelper(event, x, y, 'right');
-        });
-      }
+      cellElement.addEventListener('click', (event) => {
+        handleClickHelper(event, x, y, 'left', boardStruct.boardNumber);
+      });
+      cellElement.addEventListener('contextmenu', (event) => {
+        handleClickHelper(event, x, y, 'right', boardStruct.boardNumber);
+      });
       rowElement.appendChild(cellElement);
     }
     containerElement.appendChild(rowElement);
@@ -76,14 +75,18 @@ function creatHeadRow(length) {
   return `${result}</div>`;
 }
 
-export function displayMessage(message, color) {
-  document.getElementById('display').style.color = color;
-  document.getElementById('display').innerHTML = message;
+function display(target, message, color) {
+  const targetElement = document.getElementById(target);
+  targetElement.style.color = color;
+  targetElement.innerHTML = message;
 }
 
-export function displayTextMessage(message, color) {
-  document.getElementById('textDisplay').style.color = color;
-  document.getElementById('textDisplay').innerHTML = message;
+export function displayMessage(...rest) {
+  display('display', ...rest);
+}
+
+export function displayTextMessage(...rest) {
+  display('textDisplay', ...rest);
 }
 
 window.addEventListener('load', () => {
